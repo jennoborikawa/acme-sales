@@ -1,0 +1,25 @@
+{% extends './layout.html' %}
+
+{% block content %}
+	<br>
+
+<!-- New Region  -->	
+	<div class='well'>
+		<form method='POST' action='/regions'>
+			<input name='newRegion' placeholder='add zip code' class='form-control'></input>
+			<br>
+			<button class='btn btn-primary' type='submit'>Add Zip Code</button>
+		</form>
+	</div>
+
+<!-- Listed Regions-->	
+	{% for region in regions %}
+		<ul class='list-group '>
+			<li class='list-group-item disabled'> {{ region.zipCode }} </li>
+				<!-- Regions -->				
+				{% for person in people %}
+					<li class='list-group-item'> {{ person.name }} </li>
+				{% endfor %}
+		</ul>
+	{% endfor %}
+{% endblock %}
