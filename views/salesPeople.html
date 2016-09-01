@@ -15,7 +15,7 @@
 <!-- Names of Sales People-->	
 	{% for person in people %}
 		<ul class='list-group'>
-			<form method='POST' action='/salesPersonRegion/{{person.id}}/{{currentRegion.id}}?_method=DELETE'>
+			<form method='POST' action='/salesPersonRegion/{{person.id}}/{{region.id}}?_method=DELETE'>
 				<li class='list-group-item disabled'> 
 					{{ person.name }}
 					<button class='btn btn-danger btn-xs pull-right'>Delete</button>
@@ -24,14 +24,19 @@
 
 			<!-- Regions -->				
 			{% for region in regions %}
-				<form method='POST' action='salesPersonRegion/{{person.id}}/{{currentRegion.id}}'>
 					<li class='list-group-item'>
 						{{ region.zipCode }} 
-						<button class='btn btn-default btn-xs pull-right'>Add</button>
+						<form method='POST' action='salesPersonRegion/{{person.id}}/{{region.id}}'>
+							<button class='btn btn-default btn-xs pull-right' id='add'>Add</button>
+						</form>
+						<form method='POST' action='salesPersonRegion/{{person.id}}/{{region.id}}?_method=DELETE'>
+							<button class='btn btn-default btn-xs pull-right' id='remove'>Remove</button>
+						</form>
 					</li>
-				</form>
 			{% endfor %}
 		</ul>
 	{% endfor %}
 
 {% endblock %}
+
+

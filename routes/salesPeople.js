@@ -8,13 +8,13 @@ var Region = models.Region;
 
 
 router.get('/', function(req, res, next){
-	Promise.all([SalesPerson.getAll(), Region.getAll(), Region.getCurrent()])
-	.spread(function(allSalesPeople, allRegions, currentRegion){
+	Promise.all([SalesPerson.getAll(), Region.getAll()])
+	.spread(function(allSalesPeople, allRegions){
 		// console.log(allRegions)
 		res.render('salesPeople', {
 			people: allSalesPeople, 
 			regions: allRegions, 
-			currentRegion: currentRegion
+			currentRegion: 'fill later'
 		})
 	})
 	.catch(next);
